@@ -1,0 +1,50 @@
+<web-app id="WebApp_ID" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <servlet>
+  	<servlet-name>spring</servlet-name>
+        <servlet-class>
+             org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        
+        <init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/application-context.xml</param-value>
+		</init-param>
+        
+        <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+ 	<servlet-name>spring</servlet-name>
+        <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>  
+   		<servlet-name>ExpiredCouponsTaskServlet</servlet-name>  
+   		<servlet-class>com.chen.coupons.servlets.ExpiredCouponsTaskServlet</servlet-class>  
+   		<load-on-startup>2</load-on-startup>  
+  </servlet>  
+  
+  
+  <session-config>
+		<session-timeout>30</session-timeout>
+</session-config>
+
+<welcome-file-list>
+	<welcome-file>loginPage.html</welcome-file>
+  </welcome-file-list>
+  
+  <filter>
+  <filter-name>LoginFilter</filter-name>
+  <filter-class>com.chen.coupons.filters.LoginFilter</filter-class>
+  </filter><filter-mapping>
+  <filter-name>LoginFilter</filter-name>
+  <url-pattern>/rest/*</url-pattern>
+ </filter-mapping> 
+  
+
+</web-app>
